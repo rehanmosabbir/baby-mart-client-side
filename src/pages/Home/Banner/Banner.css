@@ -1,0 +1,8 @@
+.slider img {
+  height: 80vh;
+}
+
+.slider p {
+  background-color: rgba(0, 0, 0, 0.473);
+  padding: 10px 20px;
+}

@@ -1,60 +1,46 @@
 import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import { Container, Nav, Navbar, Button } from "react-bootstrap";
 
 const Navigation = () => {
   const { user, logout } = useAuth();
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Baby Mart
-          </Typography>
-          <Link to="/explore">
-            <Button color="inherit">Explore Products</Button>
-          </Link>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand href="#home">Baby Mart</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/explore">
+              <Button variant="link">Explore Product</Button>
+            </Nav.Link>
+            <Nav.Link as={Link} to="/">
+              <Button variant="link">Home</Button>
+            </Nav.Link>
+          </Nav>
+
           {user?.email ? (
-            <Box>
-              <NavLink
-                to="/dashboard"
-                style={{ textDecoration: "none", color: "#fff" }}
-              >
-                <Button color="inherit">Dashboard</Button>
-              </NavLink>
-              <Button onClick={logout} color="inherit">
+            <Nav>
+              <Button onClick={logout} variant="warning">
                 Logout
               </Button>
-            </Box>
+              <Nav.Link as={Link} to="/">
+                {user.email}
+              </Nav.Link>
+            </Nav>
           ) : (
             <NavLink
               to="/login"
               style={{ textDecoration: "none", color: "#fff" }}
             >
-              <Button color="inherit">Login</Button>
+              <Button variant="link">Login</Button>
             </NavLink>
           )}
-
-          <Typography variant="h6">{user.email}</Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

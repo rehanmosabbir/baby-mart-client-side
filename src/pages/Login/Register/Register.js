@@ -1,12 +1,13 @@
 import {
   Alert,
-  Button,
-  CircularProgress,
+  Col,
   Container,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+  Row,
+  Spinner,
+  FormControl,
+  Button,
+  FloatingLabel,
+} from "react-bootstrap";
 import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
@@ -36,72 +37,78 @@ const Register = () => {
   };
   return (
     <Container>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6} sx={{ mt: 8 }}>
-          <Typography variant="body1" gutterBottom>
-            Register
-          </Typography>
+      <Row>
+        <Col xs={12} md={6}>
+          <h1 className="text-primary">Register</h1>
           {!isLoading && (
             <form onSubmit={handleLoginSubmit}>
-              <TextField
-                id="standard-basic"
+              <FloatingLabel
+                controlId="floatingInput"
                 label="Your Name"
-                type="text"
-                name="name"
-                onBlur={handleOnBlur}
-                variant="standard"
-                sx={{ width: "75%", m: 1 }}
-              />
-              <TextField
-                id="standard-basic"
-                label="Your Email"
-                type="email"
-                name="email"
-                onBlur={handleOnBlur}
-                variant="standard"
-                sx={{ width: "75%", m: 1 }}
-              />
-              <TextField
-                id="standard-basic"
-                label="Your Password"
-                type="password"
-                name="password"
-                onBlur={handleOnBlur}
-                variant="standard"
-                sx={{ width: "75%", m: 1 }}
-              />
-              <TextField
-                id="standard-basic"
-                label="Retype Your Password"
-                type="password"
-                name="password2"
-                onBlur={handleOnBlur}
-                variant="standard"
-                sx={{ width: "75%", m: 1 }}
-              />
-              <Button
-                type="submit"
-                sx={{ width: "75%", m: 1 }}
-                variant="contained"
+                className="mb-3"
               >
+                <FormControl
+                  type="text"
+                  name="name"
+                  onBlur={handleOnBlur}
+                  placeholder="Your Name"
+                />
+              </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Your Email"
+                className="mb-3"
+              >
+                <FormControl
+                  type="email"
+                  name="email"
+                  onBlur={handleOnBlur}
+                  placeholder="Your Email"
+                />
+              </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Your Password"
+                className="mb-3"
+              >
+                <FormControl
+                  type="password"
+                  name="password"
+                  onBlur={handleOnBlur}
+                  placeholder="Your Password"
+                />
+              </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Retype Your Password"
+                className="mb-3"
+              >
+                <FormControl
+                  type="password"
+                  name="password2"
+                  onBlur={handleOnBlur}
+                  placeholder="Retype Your Password"
+                />
+              </FloatingLabel>
+              <Button type="submit" variant="primary">
                 Register
               </Button>
               <NavLink style={{ textDecoration: "none" }} to="/login">
-                <Button variant="text">Already Registered? Please Login</Button>
+                <Button variant="link">Already Registered? Please Login</Button>
               </NavLink>
             </form>
           )}
 
-          {isLoading && <CircularProgress />}
+          {isLoading && <Spinner animation="border" variant="primary" />}
           {user?.email && (
-            <Alert severity="success">user created successfully!!!</Alert>
+            <Alert variant="success">user created successfully!!!</Alert>
           )}
-          {authError && <Alert severity="error">{authError}</Alert>}
-        </Grid>
-        <Grid item xs={12} md={6}>
+          {authError && <Alert variant="danger">{authError}</Alert>}
+        </Col>
+        <Col xs={12} md={6}>
           {/* <img style={{ width: "100%" }} src={login} alt="" /> */}
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
     </Container>
   );
 };

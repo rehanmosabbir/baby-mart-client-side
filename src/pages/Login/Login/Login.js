@@ -1,13 +1,14 @@
+import React, { useState } from "react";
 import {
   Alert,
-  Button,
-  CircularProgress,
+  Col,
   Container,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
-import React, { useState } from "react";
+  Row,
+  Spinner,
+  FormControl,
+  Button,
+  FloatingLabel,
+} from "react-bootstrap";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 // import login from "../../../images/login.png";
@@ -36,56 +37,56 @@ const Login = () => {
   };
   return (
     <Container>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6} sx={{ mt: 8 }}>
-          <Typography variant="body1" gutterBottom>
-            Login
-          </Typography>
+      <Row>
+        <Col xs={12} md={6}>
+          <h1 className="text-primary">Login</h1>
           <form onSubmit={handleLoginSubmit}>
-            <TextField
-              id="standard-basic"
+            <FloatingLabel
+              controlId="floatingInput"
               label="Your Email"
-              type="email"
-              name="email"
-              onChange={handleOnChange}
-              variant="standard"
-              sx={{ width: "75%", m: 1 }}
-            />
-            <TextField
-              id="standard-basic"
-              label="Your Password"
-              type="password"
-              name="password"
-              onChange={handleOnChange}
-              variant="standard"
-              sx={{ width: "75%", m: 1 }}
-            />
-            <Button
-              type="submit"
-              sx={{ width: "75%", m: 1 }}
-              variant="contained"
+              className="mb-3"
             >
+              <FormControl
+                placeholder="Your Email"
+                type="email"
+                name="email"
+                onChange={handleOnChange}
+              />
+            </FloatingLabel>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Your Password"
+              className="mb-3"
+            >
+              <FormControl
+                placeholder="Your Password"
+                type="password"
+                name="password"
+                onChange={handleOnChange}
+              />
+            </FloatingLabel>
+            <Button type="submit" variant="warning">
               Login
             </Button>
             <NavLink style={{ textDecoration: "none" }} to="/register">
-              <Button variant="text">New User? Please Register</Button>
+              <Button variant="link">New User? Please Register</Button>
             </NavLink>
           </form>
           <p>-------------or-------------</p>
-          <Button onClick={handleGoogleSignIn} variant="contained">
+          <Button onClick={handleGoogleSignIn} variant="danger">
             Google Sign In
           </Button>
 
-          {isLoading && <CircularProgress />}
+          {isLoading && <Spinner animation="border" variant="primary" />}
           {user?.email && (
-            <Alert severity="success">logged in successfully!!!</Alert>
+            <Alert variant="success">logged in successfully!!!</Alert>
           )}
-          {authError && <Alert severity="error">{authError}</Alert>}
-        </Grid>
-        <Grid item xs={12} md={6}>
+          {authError && <Alert variant="danger">{authError}</Alert>}
+        </Col>
+        <Col item xs={12} md={6}>
           {/* <img style={{ width: "100%" }} src={login} alt="" /> */}
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
     </Container>
   );
 };
