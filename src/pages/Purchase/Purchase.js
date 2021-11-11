@@ -94,7 +94,7 @@ const Purchase = () => {
                 placeholder="service name"
                 type="text"
                 value={product?.productName}
-                {...register("serviceName", { required: true })}
+                {...register("productName", { required: true })}
               />
             </div>
             <div className="col-md-6">
