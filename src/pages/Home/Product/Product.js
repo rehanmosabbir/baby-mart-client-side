@@ -16,7 +16,7 @@ const Product = ({ product }) => {
             {description.slice(0, 200)}...
           </Card.Text>
           <small className="text-danger  mx-4">$ {price}</small>
-          <Link to={`/placeorder/${_id}`}>
+          <Link to={`/purchase/${_id}`}>
             <Button variant="danger" className="ms-5">
               Purchase Now{" "}
               <FontAwesomeIcon

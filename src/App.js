@@ -5,6 +5,7 @@ import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 import ExploreProducts from "./pages/ExploreProducts/ExploreProducts";
 import Home from "./pages/Home/Home/Home";
 import Login from "./pages/Login/Login/Login";
+import PrivateRoute from "./pages/Login/PrivateRoute/PrivateRoute";
 import Register from "./pages/Login/Register/Register";
 import Purchase from "./pages/Purchase/Purchase";
 
@@ -25,9 +26,9 @@ function App() {
           <Route exact path="/explore">
             <ExploreProducts></ExploreProducts>
           </Route>
-          <Route exact path="/purchase">
+          <PrivateRoute exact path="/purchase/:orderId">
             <Purchase></Purchase>
-          </Route>
+          </PrivateRoute>
           <Route exact path="/">
             <Home />
           </Route>
