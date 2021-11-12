@@ -16,13 +16,19 @@ const Navigation = () => {
             <Nav.Link as={Link} to="/explore">
               <Button variant="link">Explore Product</Button>
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/home">
               <Button variant="link">Home</Button>
             </Nav.Link>
           </Nav>
 
           {user?.email ? (
             <Nav>
+              <NavLink
+                to="/dashboard"
+                style={{ textDecoration: "none", color: "#fff" }}
+              >
+                <Button variant="link">Dashboard</Button>
+              </NavLink>
               <Button onClick={logout} variant="warning">
                 Logout
               </Button>

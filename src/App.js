@@ -7,10 +7,9 @@ import Home from "./pages/Home/Home/Home";
 import Login from "./pages/Login/Login/Login";
 import PrivateRoute from "./pages/Login/PrivateRoute/PrivateRoute";
 import Register from "./pages/Login/Register/Register";
-import ManageOrders from "./pages/ManageOrders/ManageOrders";
 import Purchase from "./pages/Purchase/Purchase";
-import UserOrders from "./pages/UserOrders/UserOrders";
 import NotFound from "./pages/NotFound/NotFound";
+import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -32,12 +31,10 @@ function App() {
           <PrivateRoute exact path="/purchase/:orderId">
             <Purchase></Purchase>
           </PrivateRoute>
-          <PrivateRoute exact path="/manageorders">
-            <ManageOrders></ManageOrders>
+          <PrivateRoute path="/dashboard">
+            <Dashboard></Dashboard>
           </PrivateRoute>
-          <PrivateRoute exact path="/orders">
-            <UserOrders></UserOrders>
-          </PrivateRoute>
+
           <Route exact path="/">
             <Home />
           </Route>
