@@ -31,6 +31,7 @@ import AddNewProduct from "../AddNewProduct/AddNewProduct";
 import ManageOrders from "../ManageOrders/ManageOrders";
 import UserOrders from "../UserOrders/UserOrders";
 import AdminRoute from "../../Login/AdminRoute/AdminRoute";
+import AddReview from "../AddReview/AddReview";
 
 const drawerWidth = 200;
 
@@ -63,6 +64,9 @@ function Dashboard(props) {
 
       <Link to={`${url}/userOrders`}>
         <Button color="inherit">User Orders</Button>
+      </Link>
+      <Link to={`${url}/addReviews`}>
+        <Button color="inherit">Add Reviews</Button>
       </Link>
 
       {admin && (
@@ -172,6 +176,9 @@ function Dashboard(props) {
           </Route>
           <Route path={`${path}/userOrders`}>
             <UserOrders></UserOrders>
+          </Route>
+          <Route path={`${path}/addReviews`}>
+            <AddReview></AddReview>
           </Route>
           <AdminRoute path={`${path}/makeAdmin`}>
             <MakeAdmin></MakeAdmin>
