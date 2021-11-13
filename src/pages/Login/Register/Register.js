@@ -113,7 +113,7 @@ const Register = () => {
           </Col>
           <Col xs={12} md={6}>
             <img
-              className="img-fluid mx-5"
+              className="img-fluid"
               src="https://i.ibb.co/DDvRXFM/login.png"
               alt=""
             />
