@@ -58,7 +58,10 @@ const AddReview = () => {
               <input
                 className="form-control"
                 placeholder="photo URL"
-                value={user?.photoURL}
+                value={
+                  user?.photoURL ||
+                  "https://cdn.iconscout.com/icon/free/png-256/boy-avatar-4-1129037.png"
+                }
                 type="text"
                 {...register("photoURL", { required: true })}
               />
