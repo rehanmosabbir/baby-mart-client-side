@@ -67,7 +67,7 @@ const ManageOrders = () => {
       </h1>
       <hr className="w-50 m-auto mb-5" />
       <Row xs={1} md={3} className="g-4">
-        <div className="table-responsive-lg">
+        <div className="table-scrollable">
           <Table striped bordered hover>
             <thead>
               <tr>

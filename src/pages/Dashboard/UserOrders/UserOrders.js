@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Container, Row, Table } from "react-bootstrap";
 import useAuth from "../../../hooks/useAuth";
+import "./UserOrders.css";
 
 const UserOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -43,7 +44,7 @@ const UserOrders = () => {
       </h1>
       <hr className="w-50 m-auto mb-5" />
       <Row xs={1} md={3} className="g-4">
-        <div className="table-responsive-lg">
+        <div className="table-scrollable">
           <Table striped bordered hover>
             <thead>
               <tr>
