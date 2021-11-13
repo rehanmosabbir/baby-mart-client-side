@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Product = ({ product }) => {
-  const { _id, serviceName: productName, img, description, price } = product;
+  const { _id, productName, img, description, price } = product;
   return (
     <Col>
       <Card>

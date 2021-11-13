@@ -6,14 +6,14 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch("https://shrouded-reaches-47606.herokuapp.com/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
 
   return (
     <Container>
-      <h1 className="text-danger fw-bold text-center mt-5 mb-4">
+      <h1 className="text-dark fw-bold text-center mt-5 mb-4">
         Our Client Reviews
       </h1>
       <hr className="w-50 m-auto mb-5" />

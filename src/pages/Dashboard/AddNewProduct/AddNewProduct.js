@@ -6,18 +6,20 @@ const AddNewProduct = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     console.log("form submitted");
-    axios.post("http://localhost:5000/products", data).then((res) => {
-      if (res.data.insertedId) {
-        alert("Add product successfully");
-        reset();
-      }
-    });
+    axios
+      .post("https://shrouded-reaches-47606.herokuapp.com/products", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          alert("Add product successfully");
+          reset();
+        }
+      });
   };
   return (
     <div className="container ">
       <div className="row d-flex flex-column align-items-center justify-content-center">
         <div className="col-md-6">
-          <h1 className="text-danger fw-bold text-center mt-5 mb-4">
+          <h1 className="text-dark fw-bold text-center mt-5 mb-4">
             Add a new Product
           </h1>
           <hr className="w-50 m-auto mb-5" />

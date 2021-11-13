@@ -10,13 +10,13 @@ const ManageOrders = () => {
   const [orderStatus, setOrderStatus] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders`)
+    fetch(`https://shrouded-reaches-47606.herokuapp.com/orders`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
 
   const handleChangeStatus = (id) => {
-    const url = `http://localhost:5000/orders/${id}`;
+    const url = `https://shrouded-reaches-47606.herokuapp.com/orders/${id}`;
 
     if (window.confirm("Are you sure to confirm this order?")) {
       const filteredOrder = orders.filter((order) => order._id === id);
@@ -41,7 +41,7 @@ const ManageOrders = () => {
     }
   };
   const handleDeleteOrder = (id) => {
-    const url = `http://localhost:5000/orders/${id}`;
+    const url = `https://shrouded-reaches-47606.herokuapp.com/orders/${id}`;
 
     if (window.confirm("Are you sure to delete this order?")) {
       fetch(url, {
@@ -61,8 +61,9 @@ const ManageOrders = () => {
 
   return (
     <Container>
-      <h1 className="text-danger fw-bold text-center mt-5 mb-4">
-        Manage Orders
+      <h1 className="text-dark fw-bold text-center mt-5 mb-4">
+        {" "}
+        Total Orders : {orders.length}
       </h1>
       <hr className="w-50 m-auto mb-5" />
       <Row xs={1} md={3} className="g-4">
@@ -70,8 +71,8 @@ const ManageOrders = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Service Name</th>
-                <th>Service Image</th>
+                <th>Product Name</th>
+                <th>Product Image</th>
                 <th>price</th>
                 <th> Name</th>
                 <th>Email</th>

@@ -11,15 +11,15 @@ const UserOrders = () => {
   console.log(user.email);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders/${user.email}`)
+    fetch(`https://shrouded-reaches-47606.herokuapp.com/orders/${user.email}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
-  }, []);
+  }, [user.email]);
 
   console.log(orders);
 
   const handleDeleteOrder = (id) => {
-    const url = `http://localhost:5000/orders/${id}`;
+    const url = `https://shrouded-reaches-47606.herokuapp.com/orders/${id}`;
 
     if (window.confirm("Are you sure to delete this order?")) {
       fetch(url, {
@@ -38,7 +38,9 @@ const UserOrders = () => {
   };
   return (
     <Container>
-      <h1 className="text-danger fw-bold text-center mt-5 mb-4">User Order</h1>
+      <h1 className="text-danger fw-bold text-center mt-5 mb-4">
+        User Orders: {orders.length}
+      </h1>
       <hr className="w-50 m-auto mb-5" />
       <Row xs={1} md={3} className="g-4">
         <div className="table-responsive-lg">
@@ -46,8 +48,8 @@ const UserOrders = () => {
             <thead>
               <tr>
                 <th>Order Id</th>
-                <th>Service Name</th>
-                <th>Service Image</th>
+                <th>Product Name</th>
+                <th>Product Image</th>
                 <th>price</th>
                 <th> Name</th>
                 <th>Email</th>
@@ -59,7 +61,7 @@ const UserOrders = () => {
             <tbody>
               {orders.map((order) => (
                 <tr key={order._id}>
-                  <td>{order._id}</td>
+                  <td>{order._id.slice(0, 8)}</td>
                   <td>{order.productName}</td>
                   <td>
                     <img className="img-fluid" src={order.imgURL} alt="" />

@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import Navigation from "../../Shared/Navigation/Navigation";
 // import login from "../../../images/login.png";
 
 const Login = () => {
@@ -36,58 +37,65 @@ const Login = () => {
     signInWithGoogle(location, history);
   };
   return (
-    <Container>
-      <Row>
-        <Col xs={12} md={6}>
-          <h1 className="text-primary">Login</h1>
-          <form onSubmit={handleLoginSubmit}>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Your Email"
-              className="mb-3"
-            >
-              <FormControl
-                placeholder="Your Email"
-                type="email"
-                name="email"
-                onChange={handleOnChange}
-              />
-            </FloatingLabel>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Your Password"
-              className="mb-3"
-            >
-              <FormControl
-                placeholder="Your Password"
-                type="password"
-                name="password"
-                onChange={handleOnChange}
-              />
-            </FloatingLabel>
-            <Button type="submit" variant="warning">
-              Login
+    <>
+      <Navigation></Navigation>
+      <Container>
+        <Row className="mt-5">
+          <Col xs={12} md={6}>
+            <h1 className="text-dark mb-5">Please Login</h1>
+            <form onSubmit={handleLoginSubmit}>
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Your Email"
+                className="mb-3"
+              >
+                <FormControl
+                  placeholder="Your Email"
+                  type="email"
+                  name="email"
+                  onChange={handleOnChange}
+                />
+              </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Your Password"
+                className="mb-3"
+              >
+                <FormControl
+                  placeholder="Your Password"
+                  type="password"
+                  name="password"
+                  onChange={handleOnChange}
+                />
+              </FloatingLabel>
+              <Button type="submit" variant="danger">
+                Login
+              </Button>
+              <NavLink style={{ textDecoration: "none" }} to="/register">
+                <Button variant="link">New User? Please Register</Button>
+              </NavLink>
+            </form>
+            <p className="my-3">-------------or-------------</p>
+            <Button onClick={handleGoogleSignIn} variant="danger">
+              Google Sign In
             </Button>
-            <NavLink style={{ textDecoration: "none" }} to="/register">
-              <Button variant="link">New User? Please Register</Button>
-            </NavLink>
-          </form>
-          <p>-------------or-------------</p>
-          <Button onClick={handleGoogleSignIn} variant="danger">
-            Google Sign In
-          </Button>
 
-          {isLoading && <Spinner animation="border" variant="primary" />}
-          {user?.email && (
-            <Alert variant="success">logged in successfully!!!</Alert>
-          )}
-          {authError && <Alert variant="danger">{authError}</Alert>}
-        </Col>
-        <Col item xs={12} md={6}>
-          {/* <img style={{ width: "100%" }} src={login} alt="" /> */}
-        </Col>
-      </Row>
-    </Container>
+            {isLoading && <Spinner animation="border" variant="primary" />}
+            {user?.email && (
+              <Alert variant="success">logged in successfully!!!</Alert>
+            )}
+            {authError && <Alert variant="danger">{authError}</Alert>}
+          </Col>
+          <Col item xs={12} md={6}>
+            <img
+              className="img-fluid mx-5"
+              src="https://i.ibb.co/DDvRXFM/login.png"
+              alt=""
+            />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

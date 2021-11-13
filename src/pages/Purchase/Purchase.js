@@ -18,7 +18,7 @@ const Purchase = () => {
     console.log(data);
     console.log("form submitted");
     axios
-      .post("http://localhost:5000/orders", {
+      .post("https://shrouded-reaches-47606.herokuapp.com/orders", {
         ...data,
         status: "pending",
       })
@@ -32,7 +32,7 @@ const Purchase = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${orderId}`)
+    fetch(`https://shrouded-reaches-47606.herokuapp.com/products/${orderId}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [orderId]);
@@ -40,19 +40,19 @@ const Purchase = () => {
   return (
     <>
       <Navigation></Navigation>
-      <div className="container mt-5">
+      <div className="container-fluid mt-5">
         <div className="row">
-          <div className="col-md-12">
+          <div className="col-md-6 mt-5">
             <div className="card mb-3">
               <div className="row g-0">
-                <div className="col-md-4">
+                <div className="col-md-2">
                   <img
                     src={product?.img}
                     className="img-fluid rounded-start"
                     alt="..."
                   />
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-10">
                   <div className="card-body">
                     <h6 className="card-title border-bottom pb-3">
                       {product?.productName}
@@ -67,8 +67,8 @@ const Purchase = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
-            <h1 className="text-danger fw-bold text-center mt-5 mb-4">
+          <div className="col-md-6 px-5">
+            <h1 className="text-dark fw-bold text-center  mb-4">
               Place an order
             </h1>
             <hr className="w-50 m-auto mb-5" />

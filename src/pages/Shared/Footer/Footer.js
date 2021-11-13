@@ -33,7 +33,7 @@ const Footer = () => {
           </h4>
           <p className="mb-0">01972 277 866</p>
           <p>016 30 31 30 31</p>
-          <p>info@tourplannerbd.com</p>
+          <p>info@babymart.com</p>
         </div>
         <div className="col-md-3 col-sm-12 my-3 border-bottom  pb-5">
           <h4 className="mb-3">
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-center text-white py-4 m-0 text-wrap">
-        © 2021 Tour Planner BD - All rights reserved
+        © 2021 Baby Mart - All rights reserved
       </p>
     </div>
   );

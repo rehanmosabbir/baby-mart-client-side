@@ -1,0 +1,7 @@
+.menu a {
+  text-decoration: none;
+  display: inline-block;
+  color: #000;
+  border-bottom: 1px dotted gray;
+  padding: 0 10px;
+}

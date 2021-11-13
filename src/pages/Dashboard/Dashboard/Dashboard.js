@@ -6,24 +6,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from "react-router-dom";
+import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import DashboardHome from "../DashboardHome/DashboardHome";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
@@ -32,14 +19,17 @@ import ManageOrders from "../ManageOrders/ManageOrders";
 import UserOrders from "../UserOrders/UserOrders";
 import AdminRoute from "../../Login/AdminRoute/AdminRoute";
 import AddReview from "../AddReview/AddReview";
+import ManageProducts from "../ManageProducts/ManageProducts";
+import Payment from "../Payment/Payment";
+import "./Dashboard.css";
 
-const drawerWidth = 200;
+const drawerWidth = 178;
 
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let { path, url } = useRouteMatch();
-  const { admin, user } = useAuth();
+  const { admin, user, logout } = useAuth();
   console.log(path, url);
 
   const handleDrawerToggle = () => {
@@ -47,27 +37,53 @@ function Dashboard(props) {
   };
 
   const drawer = (
-    <div>
-      <Toolbar />
-
+    <div className="menu " style={{ textAlign: "center" }}>
+      <img
+        style={{
+          width: "100px",
+          height: "100px",
+          borderRadius: "50%",
+          marginLeft: "20px",
+        }}
+        src={
+          user?.photoURL
+            ? user?.photoURL
+            : "https://cdn.iconscout.com/icon/free/png-256/boy-avatar-4-1129037.png"
+        }
+        alt=""
+      />
+      <br />
+      <p>{user?.displayName}</p>
+      <br />
+      <Button
+        style={{ marginLeft: "20px", marginBottom: "20px" }}
+        onClick={logout}
+        variant="contained"
+        color="error"
+      >
+        Logout
+      </Button>
+      <br />
       <Divider />
-      <img src={user.photoURL} alt="" />
-      <br />
-      {user.displayName}
-      <br />
-      <Link to={`${url}`}>
-        <Button color="inherit">Dashboard</Button>
-      </Link>
       <Link to="/explore">
         <Button color="inherit">Explore Products</Button>
       </Link>
-
-      <Link to={`${url}/userOrders`}>
-        <Button color="inherit">User Orders</Button>
-      </Link>
-      <Link to={`${url}/addReviews`}>
-        <Button color="inherit">Add Reviews</Button>
-      </Link>
+      {!admin && (
+        <>
+          <Link to={`${url}`}>
+            <Button color="inherit">Dashboard</Button>
+          </Link>
+          <Link to={`${url}/userOrders`}>
+            <Button color="inherit">User Orders</Button>
+          </Link>
+          <Link to={`${url}/addReviews`}>
+            <Button color="inherit">Add Reviews</Button>
+          </Link>
+          <Link to={`${url}/payment`}>
+            <Button color="inherit">Make Payment</Button>
+          </Link>
+        </>
+      )}
 
       {admin && (
         <>
@@ -80,19 +96,11 @@ function Dashboard(props) {
           <Link to={`${url}/manageOrders`}>
             <Button color="inherit">Manage Orders</Button>
           </Link>
+          <Link to={`${url}/manageProducts`}>
+            <Button color="inherit">Manage Products</Button>
+          </Link>
         </>
       )}
-
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </div>
   );
 
@@ -104,6 +112,7 @@ function Dashboard(props) {
       <CssBaseline />
       <AppBar
         position="fixed"
+        style={{ backgroundColor: "#222" }}
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
@@ -177,6 +186,9 @@ function Dashboard(props) {
           <Route path={`${path}/userOrders`}>
             <UserOrders></UserOrders>
           </Route>
+          <Route path={`${path}/payment`}>
+            <Payment></Payment>
+          </Route>
           <Route path={`${path}/addReviews`}>
             <AddReview></AddReview>
           </Route>
@@ -188,6 +200,9 @@ function Dashboard(props) {
           </AdminRoute>
           <AdminRoute path={`${path}/manageOrders`}>
             <ManageOrders></ManageOrders>
+          </AdminRoute>
+          <AdminRoute path={`${path}/manageProducts`}>
+            <ManageProducts></ManageProducts>
           </AdminRoute>
         </Switch>
       </Box>
