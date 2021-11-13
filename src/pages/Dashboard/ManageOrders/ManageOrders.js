@@ -21,7 +21,7 @@ const ManageOrders = () => {
     if (window.confirm("Are you sure to confirm this order?")) {
       const filteredOrder = orders.filter((order) => order._id === id);
       const updatedOrder = filteredOrder[0];
-      updatedOrder.status = "approved";
+      updatedOrder.status = "shipped";
       console.log(updatedOrder);
       fetch(url, {
         method: "PUT",
@@ -100,9 +100,7 @@ const ManageOrders = () => {
                     <button
                       onClick={() => handleChangeStatus(order._id)}
                       className={`btn btn-success ${
-                        order.status === "approved"
-                          ? "btn-hidden"
-                          : "btn-active"
+                        order.status === "shipped" ? "btn-hidden" : "btn-active"
                       }`}
                     >
                       <div className="d-flex justify-content-center align-items-center">
