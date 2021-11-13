@@ -43,7 +43,7 @@ const UserOrders = () => {
       </h1>
       <hr className="w-50 m-auto mb-5" />
       <Row xs={1} md={3} className="g-4">
-        <div className="table-responsive-sm">
+        <div className="table-responsive-lg">
           <Table striped bordered hover>
             <thead>
               <tr>
