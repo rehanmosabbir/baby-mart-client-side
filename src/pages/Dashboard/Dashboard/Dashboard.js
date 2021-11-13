@@ -22,6 +22,7 @@ import AddReview from "../AddReview/AddReview";
 import ManageProducts from "../ManageProducts/ManageProducts";
 import Payment from "../Payment/Payment";
 import "./Dashboard.css";
+import UserRoute from "../../Login/UserRoute/UserRoute";
 
 const drawerWidth = 178;
 
@@ -183,15 +184,15 @@ function Dashboard(props) {
           <Route exact path={path}>
             <DashboardHome></DashboardHome>
           </Route>
-          <Route path={`${path}/userOrders`}>
+          <UserRoute path={`${path}/userOrders`}>
             <UserOrders></UserOrders>
-          </Route>
-          <Route path={`${path}/payment`}>
+          </UserRoute>
+          <UserRoute path={`${path}/payment`}>
             <Payment></Payment>
-          </Route>
-          <Route path={`${path}/addReviews`}>
+          </UserRoute>
+          <UserRoute path={`${path}/addReviews`}>
             <AddReview></AddReview>
-          </Route>
+          </UserRoute>
           <AdminRoute path={`${path}/makeAdmin`}>
             <MakeAdmin></MakeAdmin>
           </AdminRoute>
